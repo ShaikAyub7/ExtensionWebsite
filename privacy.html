@@ -2,65 +2,839 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy - Tab Time Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --sidebar-w: 360px;
+        --bg: #f7f7f5;
+        --sidebar-bg: #ffffff;
+        --content-bg: #ffffff;
+        --border: #e8e8e4;
+        --accent: #2563eb;
+        --accent-light: #eff4ff;
+        --text-head: #111110;
+        --text-body: #4a4a48;
+        --text-meta: #9a9a96;
+        --tag-bg: #f0f0ee;
+        --radius: 10px;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text-body);
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* ─── Sidebar ─── */
+      aside {
+        width: var(--sidebar-w);
+        min-height: 100vh;
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        overflow-y: auto;
+      }
+
+      .sidebar-brand {
+        display: flex;
+        justify-content: left;
+        gap: 1rem;
+        align-items: center;
+        padding: 28px 24px 24px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        background: #f2f2f2;
+        border-radius: 8px;
+        border: 1px solid gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+
+        margin-bottom: 2px;
+      }
+
+      .brand-name {
+        font-family: "Lora", serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-head);
+        line-height: 1.3;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+        color: var(--text-meta);
+        margin-top: 2px;
+        letter-spacing: 0.04em;
+      }
+
+      .sidebar-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-meta);
+        padding: 20px 24px 8px;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0 12px;
+      }
+
+      nav ul li a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 13.5px;
+        color: var(--text-body);
+        font-weight: 400;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        line-height: 1.4;
+      }
+
+      nav ul li a .nav-num {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text-meta);
+        min-width: 18px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      nav ul li a:hover,
+      nav ul li a.active {
+        background: var(--accent-light);
+        color: var(--accent);
+      }
+
+      nav ul li a:hover .nav-num,
+      nav ul li a.active .nav-num {
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding: 20px 24px;
+        border-top: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--text-meta);
+        line-height: 1.6;
+      }
+
+      /* ─── Main ─── */
+      main {
+        margin-left: var(--sidebar-w);
+        flex: 1;
+        padding: 0 40px 80px;
+        max-width: 1200px;
+      }
+
+      /* ─── Top bar ─── */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 48px;
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text-meta);
+      }
+
+      .breadcrumb span {
+        color: var(--text-head);
+        font-weight: 500;
+      }
+
+      .updated-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--tag-bg);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--text-meta);
+        padding: 5px 14px;
+      }
+
+      .updated-pill::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: #22c55e;
+        border-radius: 50%;
+      }
+
+      /* ─── Hero ─── */
+      .hero {
+        margin-bottom: 56px;
+        animation: up 0.5s ease both;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-light);
+        padding: 5px 12px;
+        border-radius: 999px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-family: "Lora", serif;
+        font-size: clamp(32px, 4.5vw, 50px);
+        font-weight: 700;
+        color: var(--text-head);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+      }
+
+      .hero-desc {
+        font-size: 16px;
+        color: var(--text-body);
+        line-height: 1.8;
+        max-width: 560px;
+        font-weight: 300;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 24px;
+        margin-top: 28px;
+        flex-wrap: wrap;
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .stat-val {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text-head);
+        font-family: "Lora", serif;
+      }
+
+      .stat-label {
+        font-size: 11px;
+        color: var(--text-meta);
+        letter-spacing: 0.04em;
+      }
+
+      .stat-divider {
+        width: 1px;
+        background: var(--border);
+        align-self: stretch;
+      }
+
+      /* ─── Sections ─── */
+      .section {
+        scroll-margin-top: 24px;
+        margin-bottom: 52px;
+        animation: up 0.5s ease both;
+      }
+
+      .section:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .section:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .section:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      .section:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      .section:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+      .section:nth-child(6) {
+        animation-delay: 0.3s;
+      }
+
+      .section-inner {
+        background: var(--content-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 22px 28px;
+        border-bottom: 1px solid var(--border);
+        background: #fafaf9;
+      }
+
+      .section-icon {
+        width: 34px;
+        height: 34px;
+        background: var(--accent-light);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      .section-title-wrap {
+        flex: 1;
+      }
+
+      h2 {
+        font-family: "Lora", serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text-head);
+        letter-spacing: -0.01em;
+      }
+
+      .section-num {
+        font-size: 11px;
+        color: var(--text-meta);
+        margin-bottom: 2px;
+        font-weight: 500;
+      }
+
+      .section-body {
+        padding: 24px 28px;
+        font-size: 15px;
+        line-height: 1.85;
+        color: var(--text-body);
+        font-weight: 300;
+      }
+
+      .section-body p + p {
+        margin-top: 14px;
+      }
+
+      .section-body a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 400;
+        border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+        transition: border-color 0.2s;
+      }
+
+      .section-body a:hover {
+        border-color: var(--accent);
+      }
+
+      /* Info box */
+      .infobox {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: var(--accent-light);
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin-top: 16px;
+        font-size: 13.5px;
+        color: #1d4ed8;
+        line-height: 1.65;
+      }
+
+      .infobox-icon {
+        font-size: 15px;
+        margin-top: 1px;
+        flex-shrink: 0;
+      }
+      .infobox a {
+        color: #1d4ed8;
+        border-color: rgba(29, 78, 216, 0.35);
+      }
+
+      /* ─── Contact card ─── */
+      .contact-card {
+        background: var(--content-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 36px 32px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        animation: up 0.5s 0.35s ease both;
+        margin-bottom: 52px;
+      }
+
+      .contact-text {
+        flex: 1;
+        min-width: 200px;
+      }
+      .contact-text h2 {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+      .contact-text p {
+        font-size: 14px;
+        color: var(--text-meta);
+      }
+
+      .contact-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 12px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+      }
+
+      .contact-btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+      }
+
+      /* ─── Page footer ─── */
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 12.5px;
+        color: var(--text-meta);
+        flex-wrap: wrap;
+        animation: up 0.5s 0.4s ease both;
+      }
+
+      /* ─── Hamburger (mobile) ─── */
+      .ham-btn {
+        display: none;
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 200;
+        background: var(--sidebar-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        gap: 5px;
+      }
+      .img-logo {
+        width: 18px;
+        height: 18px;
+      }
+      .ham-btn span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: var(--text-head);
+        border-radius: 2px;
+        transition: all 0.25s;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.25);
+        z-index: 90;
+      }
+
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 768px) {
+        aside {
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+        }
+
+        aside.open {
+          transform: translateX(0);
+        }
+
+        .overlay.open {
+          display: block;
+        }
+
+        main {
+          margin-left: 0;
+          padding: 72px 20px 60px;
+        }
+
+        .ham-btn {
+          display: flex;
+        }
+
+        .topbar {
+          margin-bottom: 28px;
+        }
+
+        .hero-stats {
+          gap: 16px;
+        }
+
+        .section-head,
+        .section-body {
+          padding: 18px 20px;
+        }
+
+        .contact-card {
+          flex-direction: column;
+          padding: 24px 20px;
+        }
+      }
+    </style>
   </head>
-  <body
-    style="font-family: Arial; max-width: 800px; margin: auto; line-height: 1.6"
-  >
-    <h1>Privacy Policy</h1>
-    <p>Last updated: 2026</p>
+  <body>
+    <!-- Hamburger -->
+    <button class="ham-btn" id="hamBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
 
-    <p>
-      Tab Time Tracker ("we", "our", or "us") respects your privacy. This
-      Privacy Policy explains how we handle information when you visit our
-      website.
-    </p>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
-    <h2>Information We Collect</h2>
-    <p>
-      We do not collect personal information directly from users. Some
-      non-personal data such as browser type, pages visited, and device
-      information may be collected automatically for analytics and performance
-      improvements.
-    </p>
+    <!-- ── Sidebar ── -->
+    <aside id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <img src="./imgs/logo.png" alt="" class="img-logo" />
+        </div>
+        <div>
+          <div class="brand-name">Tab Time Tracker</div>
+          <div class="brand-sub">Privacy Policy</div>
+        </div>
+      </div>
 
-    <h2>Cookies</h2>
-    <p>
-      Our website may use cookies to improve user experience. Third-party
-      vendors, including Google, may use cookies to serve ads based on your
-      previous visits to this or other websites.
-    </p>
+      <div class="sidebar-label">On This Page</div>
+      <nav>
+        <ul>
+          <li>
+            <a href="#info" class="nav-link"
+              ><span class="nav-num">01</span>Information We Collect</a
+            >
+          </li>
+          <li>
+            <a href="#cookies" class="nav-link"
+              ><span class="nav-num">02</span>Cookies</a
+            >
+          </li>
+          <li>
+            <a href="#adsense" class="nav-link"
+              ><span class="nav-num">03</span>Google AdSense</a
+            >
+          </li>
+          <li>
+            <a href="#links" class="nav-link"
+              ><span class="nav-num">04</span>Third-Party Links</a
+            >
+          </li>
+          <li>
+            <a href="#changes" class="nav-link"
+              ><span class="nav-num">05</span>Changes to Policy</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="nav-link"
+              ><span class="nav-num">06</span>Contact Us</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-    <h2>Google AdSense</h2>
-    <p>
-      We may use Google AdSense to display advertisements. Google uses the
-      DoubleClick cookie to serve ads to users based on their visits to this
-      website and other sites on the internet.
-    </p>
+      <div class="sidebar-footer">
+        © 2026 Tab Time Tracker<br />All rights reserved.
+      </div>
+    </aside>
 
-    <p>
-      Users may opt out of personalized advertising by visiting:
-      https://adssettings.google.com
-    </p>
+    <!-- ── Main ── -->
+    <main>
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="breadcrumb">
+          Tab Time Tracker &rsaquo; <span>Privacy Policy</span>
+        </div>
+        <div class="updated-pill">Last updated: 2026</div>
+      </div>
 
-    <h2>Third-Party Links</h2>
-    <p>
-      Our website may contain links to external websites. We are not responsible
-      for the content or privacy practices of those sites.
-    </p>
+      <!-- Hero -->
+      <div class="hero">
+        <h1>Privacy Policy</h1>
+        <p class="hero-desc">
+          We respect your privacy. This page explains clearly and honestly what
+          data we collect, how we use it, and the choices you have.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-val">6</span>
+            <span class="stat-label">Sections</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-val">0</span>
+            <span class="stat-label">Personal data collected</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-val">2026</span>
+            <span class="stat-label">Last revised</span>
+          </div>
+        </div>
+      </div>
 
-    <h2>Changes to This Policy</h2>
-    <p>
-      We may update this Privacy Policy from time to time. Changes will be
-      posted on this page.
-    </p>
+      <!-- Sections -->
+      <div class="section" id="info">
+        <div class="section-inner">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <div class="section-num">Section 01</div>
+              <h2>Information We Collect</h2>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              We do not collect personal information directly from users. Some
+              non-personal data such as browser type, pages visited, and device
+              information may be collected automatically for analytics and
+              performance improvements.
+            </p>
+            <div class="infobox">
+              <span class="infobox-icon">ℹ️</span>
+              <span
+                >No personally identifiable information is ever collected or
+                stored directly by us.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <h2>Contact</h2>
-    <p>
-      If you have any questions about this Privacy Policy, you can contact us
-      at:
-      <br /><br />
-      <strong>skayub929@gmail.com</strong>
-    </p>
+      <div class="section" id="cookies">
+        <div class="section-inner">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <div class="section-num">Section 02</div>
+              <h2>Cookies</h2>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              Our website may use cookies to improve your experience.
+              Third-party vendors, including Google, may use cookies to serve
+              ads based on your previous visits to this or other websites.
+            </p>
+            <p>
+              You can control or disable cookie settings through your browser
+              preferences at any time without affecting the core functionality
+              of this site.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="adsense">
+        <div class="section-inner">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <div class="section-num">Section 03</div>
+              <h2>Google AdSense</h2>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              We may use Google AdSense to display advertisements. Google uses
+              the DoubleClick cookie to serve ads based on your visits to this
+              website and other sites on the internet.
+            </p>
+            <div class="infobox">
+              <span
+                >Opt out of personalized ads at
+                <a href="https://adssettings.google.com" target="_blank"
+                  >adssettings.google.com</a
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="links">
+        <div class="section-inner">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <div class="section-num">Section 04</div>
+              <h2>Third-Party Links</h2>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              Our website may contain links to external websites. We are not
+              responsible for the content or privacy practices of those sites.
+              We encourage you to review the privacy policies of any third-party
+              sites you visit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="changes">
+        <div class="section-inner">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <div class="section-num">Section 05</div>
+              <h2>Changes to This Policy</h2>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              We may update this Privacy Policy from time to time to reflect
+              changes in our practices or for legal, operational, or regulatory
+              reasons. Any updates will be posted on this page with a revised
+              date at the top.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="contact-card" id="contact">
+        <div class="contact-text">
+          <h2>Questions? Get in Touch</h2>
+          <p>
+            If you have any questions about this Privacy Policy, reach out —
+            we're happy to help.
+          </p>
+        </div>
+        <a class="contact-btn" href="mailto:skayub929@gmail.com">
+          ✉ &nbsp;skayub929@gmail.com
+        </a>
+      </div>
+
+      <footer>
+        <span>Tab Time Tracker &mdash; Privacy Policy</span>
+        <span>© 2026 · All rights reserved</span>
+      </footer>
+    </main>
+
+    <script>
+      // Hamburger toggle
+      const ham = document.getElementById("hamBtn");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+
+      ham.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("open");
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("open");
+      });
+
+      // Active nav link on scroll
+      const sections = document.querySelectorAll("[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              navLinks.forEach((l) => l.classList.remove("active"));
+              const active = document.querySelector(
+                `.nav-link[href="#${e.target.id}"]`,
+              );
+              if (active) active.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.35 },
+      );
+
+      sections.forEach((s) => observer.observe(s));
+
+      // Close sidebar on mobile nav click
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          sidebar.classList.remove("open");
+          overlay.classList.remove("open");
+        });
+      });
+    </script>
   </body>
 </html>
