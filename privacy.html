@@ -60,6 +60,10 @@
       }
 
       .sidebar-brand {
+        display: flex;
+        justify-content: left;
+        gap: 1rem;
+        align-items: center;
         padding: 28px 24px 24px;
         border-bottom: 1px solid var(--border);
       }
@@ -67,13 +71,15 @@
       .brand-icon {
         width: 36px;
         height: 36px;
-        background: var(--accent);
+        background: #f2f2f2;
         border-radius: 8px;
+        border: 1px solid gray;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 18px;
-        margin-bottom: 12px;
+
+        margin-bottom: 2px;
       }
 
       .brand-name {
@@ -478,7 +484,10 @@
         flex-direction: column;
         gap: 5px;
       }
-
+      .img-logo {
+        width: 18px;
+        height: 18px;
+      }
       .ham-btn span {
         display: block;
         width: 18px;
@@ -563,9 +572,13 @@
     <!-- ── Sidebar ── -->
     <aside id="sidebar">
       <div class="sidebar-brand">
-        <div class="brand-icon">⏱</div>
-        <div class="brand-name">Tab Time Tracker</div>
-        <div class="brand-sub">Privacy Policy</div>
+        <div class="brand-icon">
+          <img src="./imgs/logo.png" alt="" class="img-logo" />
+        </div>
+        <div>
+          <div class="brand-name">Tab Time Tracker</div>
+          <div class="brand-sub">Privacy Policy</div>
+        </div>
       </div>
 
       <div class="sidebar-label">On This Page</div>
@@ -621,7 +634,6 @@
 
       <!-- Hero -->
       <div class="hero">
-        <div class="hero-tag">📄 Legal</div>
         <h1>Privacy Policy</h1>
         <p class="hero-desc">
           We respect your privacy. This page explains clearly and honestly what
@@ -649,7 +661,6 @@
       <div class="section" id="info">
         <div class="section-inner">
           <div class="section-head">
-            <div class="section-icon">🔒</div>
             <div class="section-title-wrap">
               <div class="section-num">Section 01</div>
               <h2>Information We Collect</h2>
@@ -676,7 +687,6 @@
       <div class="section" id="cookies">
         <div class="section-inner">
           <div class="section-head">
-            <div class="section-icon">🍪</div>
             <div class="section-title-wrap">
               <div class="section-num">Section 02</div>
               <h2>Cookies</h2>
@@ -700,7 +710,6 @@
       <div class="section" id="adsense">
         <div class="section-inner">
           <div class="section-head">
-            <div class="section-icon">📢</div>
             <div class="section-title-wrap">
               <div class="section-num">Section 03</div>
               <h2>Google AdSense</h2>
@@ -713,7 +722,6 @@
               website and other sites on the internet.
             </p>
             <div class="infobox">
-              <span class="infobox-icon">⚙️</span>
               <span
                 >Opt out of personalized ads at
                 <a href="https://adssettings.google.com" target="_blank"
@@ -728,7 +736,6 @@
       <div class="section" id="links">
         <div class="section-inner">
           <div class="section-head">
-            <div class="section-icon">🔗</div>
             <div class="section-title-wrap">
               <div class="section-num">Section 04</div>
               <h2>Third-Party Links</h2>
@@ -748,7 +755,6 @@
       <div class="section" id="changes">
         <div class="section-inner">
           <div class="section-head">
-            <div class="section-icon">🔄</div>
             <div class="section-title-wrap">
               <div class="section-num">Section 05</div>
               <h2>Changes to This Policy</h2>
